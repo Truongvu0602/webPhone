@@ -1,0 +1,22 @@
+.product-container {
+  display: flex;
+  flex-wrap: wrap; /* Cho phép xuống dòng nếu không đủ không gian */
+  gap: 70px; /* Khoảng cách giữa các ảnh */
+  margin-left: 250px;
+}
+
+.product-container img {
+  width: 100px; /* Điều chỉnh kích thước ảnh nhỏ lại */
+  height: 100px;
+  object-fit: cover; /* Giữ tỷ lệ ảnh */
+  border-radius: 5px; /* Bo góc nhẹ */
+  border: 2px solid #ddd; /* Thêm viền nhẹ */
+  transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+/* Hiệu ứng hover */
+.product-container img:hover {
+  transform: scale(1.1); /* Phóng to ảnh nhẹ khi hover */
+  border-color: #007bff; /* Đổi màu viền khi hover */
+  box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.2); /* Hiệu ứng đổ bóng */
+}

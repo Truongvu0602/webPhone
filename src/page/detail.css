@@ -1,0 +1,31 @@
+.detail-container {
+  display: flex;
+  gap: 20px; /* Khoảng cách giữa ảnh và chữ */
+  align-items: flex-start; /* Căn nội dung theo chiều dọc */
+  padding: 20px;
+}
+
+.img-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.img-container img {
+  width: 150px; /* Điều chỉnh kích thước ảnh */
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.text-container {
+  flex: 1; /* Lấy hết phần còn lại của không gian */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.text-container p {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
