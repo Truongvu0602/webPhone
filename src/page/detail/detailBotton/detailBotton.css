@@ -20,3 +20,13 @@
   border-color: #007bff; /* Đổi màu viền khi hover */
   box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.2); /* Hiệu ứng đổ bóng */
 }
+.product-item {
+  padding: 5px;
+  border: 2px solid transparent; /* Mặc định không có viền */
+  cursor: pointer;
+  transition: border 0.3s ease;
+}
+
+.product-item.selected {
+  border: 2px solid blue; /* Khi chọn, viền xanh */
+}

@@ -1,0 +1,170 @@
+.pageHeader_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 10rem;
+  width: 100%;
+  padding: 0 2rem;
+  margin-bottom: 1rem;
+  background-color: #f4f5f9;
+}
+
+.pageHeader_wrapper > h1 {
+  font-weight: lighter;
+  text-transform: uppercase;
+}
+
+.pageHeader_wrapper > p {
+  color: darkgray;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+.cart_table {
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.cart_table p {
+  margin-bottom: 0;
+}
+
+.cart_table > thead {
+  background-color: #f4f5f9;
+  height: 3rem;
+}
+
+.cart_table th {
+  font-weight: 400;
+}
+
+.cart_itemImg {
+  width: 7rem;
+}
+
+.cart_itemName {
+  max-width: 15rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+}
+
+.cart_itemRemove {
+  cursor: pointer;
+}
+
+.cart_itemPrice,
+.cart_itemTotalPrice {
+  color: gray;
+}
+
+.cart_input {
+  border: none;
+  outline: none;
+  width: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.cart_left,
+.cart_right {
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+
+.cart_input::-webkit-outer-spin-button,
+.cart_input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.cart_footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #f4f5f9;
+  padding: 0 1rem;
+}
+
+.cart_footerContentLeft,
+.cart_footerContentRight {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.2rem;
+  margin: 2rem 0;
+  color: gray !important;
+}
+
+.cart_footerContentLeft a,
+.cart_footerContentLeft a:active,
+.cart_footerContentLeft a:visited {
+  text-decoration: none;
+  color: gray !important;
+}
+
+.cart_footerContentRight {
+  border: 1px solid gray;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: gray !important;
+}
+
+.cart_footerContentRight:hover {
+  background-color: black;
+  color: white !important;
+  border: 1px solid white;
+}
+
+.cart_footerContentRight:hover a {
+  color: white !important;
+}
+.cart_table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cart_table th,
+.cart_table td {
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart_table th {
+  background-color: #f8f8f8;
+  font-weight: bold;
+}
+
+.cart_table td img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cart_table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.cart_table .delete_btn {
+  background: none;
+  border: none;
+  color: red;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cart_table .delete_btn:hover {
+  color: darkred;
+  transform: scale(1.1);
+}

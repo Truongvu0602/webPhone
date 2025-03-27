@@ -1,11 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchDataThunk, fetchDetailBottonThunk } from "../productThunk";
+import {
+  fetchCartThunk,
+  fetchDataThunk,
+  fetchDetailBottonThunk,
+  fetchHomeDataThunk,
+} from "../productThunk";
 import { fetchCategoryDataThunk } from "../productThunk";
 import { fetchDetailThunk } from "../productThunk";
 
 const initialState = {
   productList: [],
   detailList: [],
+  homeList: [],
+  quantily: 0,
+  cart: [],
 };
 
 export const productSlice = createSlice({
@@ -28,6 +36,14 @@ export const productSlice = createSlice({
       .addCase(fetchDetailBottonThunk.fulfilled, (state, actions) => {
         // console.log(actions.payload);
         state.detailList = actions.payload;
+      })
+      .addCase(fetchHomeDataThunk.fulfilled, (state, actions) => {
+        // console.log(actions.payload);
+        state.homeList = actions.payload;
+      })
+      .addCase(fetchCartThunk.fulfilled, (state, actions) => {
+        // console.log(actions.payload);
+        state.cart = actions.payload;
       });
   },
 });

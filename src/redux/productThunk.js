@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../../helper/server";
 
+// shopThunk
 export const fetchDataThunk = createAsyncThunk(
   "product/fetchDataThunk",
   //
@@ -59,74 +60,37 @@ export const fetchDetailBottonThunk = createAsyncThunk(
     }
   }
 );
-// export const fetchStatusThunk = createAsyncThunk(
-//   "todos/fetchStatusThunk",
-//   //
-//   async (params, thunkAPI) => {
-//     try {
-//       const res = await instance.get("/status");
-//       const data = res.data;
-//       return data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
 
-// export const fetchProductThunk = createAsyncThunk(
-//   "todos/fetchProductThunk",
-//   async (params, thunkAPI) => {
-//     try {
-//       const res = await instance.get("/products");
+//
 
-//       return res.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
+// homeThunk
+export const fetchHomeDataThunk = createAsyncThunk(
+  "product/fetchHomeDataThunk",
+  //
+  async (params, thunkAPI) => {
+    try {
+      const res = await instance.get("/");
+      const data = res.data;
+      console.log(data);
 
-// export const fetchProductFilterThunk = createAsyncThunk(
-//   "todos/fetchProductFilterThunk",
-//   async (params, thunkAPI) => {
-//     try {
-//       const res = await instance.get("/products", {
-//         params: params,
-//       });
-//       console.log(params);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+//
 
-//       return res.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
+export const fetchCartThunk = createAsyncThunk(
+  "product/fetchCartThunk",
+  async ({ id }, thunkAPI) => {
+    try {
+      const res = await instance.get(`/cart/${id}`);
 
-// //
-// export const fetchProductAddThunk = createAsyncThunk(
-//   "todos/fetchProductAddThunk",
-//   async (item, thunkAPI) => {
-//     try {
-//       const res = await instance.post("/products/new", item);
-//       console.log(item);
-
-//       return res.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
-
-// export const fetchProductEditThunk = createAsyncThunk(
-//   "todos/fetchProductAddThunk",
-//   async ({ item }, thunkAPI) => {
-//     try {
-//       const res = await instance.patch(`/products/${item.id}`, item);
-//       console.log(item);
-
-//       return res.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
+      console.log(id);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

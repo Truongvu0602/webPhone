@@ -1,0 +1,90 @@
+/* Shop.css */
+
+/* Bố cục chung */
+.shop-container {
+  margin-left: 150px;
+  margin-right: 150px;
+}
+
+.shop-content {
+  display: flex;
+}
+
+/* Sidebar */
+.shop-sidebar {
+  background-color: #f8f9fa;
+  padding: 16px;
+  width: 200px; /* Giữ sidebar có chiều rộng cố định */
+  max-width: 250px; /* Giới hạn chiều rộng */
+  flex-shrink: 0; /* Ngăn sidebar mở rộng */
+}
+
+.shop-sidebar h4 {
+  margin-bottom: 12px;
+}
+
+.shop-sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.shop-sidebar li {
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.shop-sidebar li:hover {
+  color: #007bff;
+}
+
+/* Danh sách sản phẩm */
+.product-list {
+  flex: 1; /* Để phần sản phẩm chiếm toàn bộ không gian còn lại */
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.product-item {
+  flex: 1 1 calc(33.333% - 12px);
+  max-width: 300px;
+  border: 1px solid #ddd;
+  padding: 16px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.product-item:hover {
+  border-color: #007bff;
+  box-shadow: 0px 8px 12px rgba(0, 123, 255, 0.2);
+}
+
+/* Hình ảnh sản phẩm */
+.product-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.product-image:hover {
+  transform: scale(1.1);
+}
+
+/* Mô tả sản phẩm */
+.product-name {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.product-desc {
+  font-size: 14px;
+  color: #555;
+}

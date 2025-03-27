@@ -1,0 +1,67 @@
+.prodCategory_wrapper {
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+}
+
+.prodCategory_item {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 380px;
+  transition: all 0.2s;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.prodCategory_item:hover {
+  filter: contrast(0.9);
+}
+
+.prodCategory_text {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: lighter;
+}
+
+.prodCategory_subText {
+  color: gray;
+}
+.prodCategory_item {
+  width: 150px; /* Giảm kích thước ảnh */
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.prodCategory_item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.prodCategory_list1 {
+  padding: 10px 20px; /* Giảm padding xung quanh */
+}
+.prodCategory_item {
+  width: 100%;
+  max-width: 200px; /* Giới hạn chiều rộng của ảnh */
+  aspect-ratio: 1 / 1; /* Giữ tỷ lệ hình vuông */
+  overflow: hidden;
+  border-radius: 8px;
+  margin: auto; /* Căn giữa ảnh trong cột */
+}
+
+.prodCategory_item img {
+  width: 100%;
+  height: auto; /* Giữ nguyên tỷ lệ ảnh */
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+}
+
+.prodCategory_item:hover img {
+  transform: scale(1.05);
+}

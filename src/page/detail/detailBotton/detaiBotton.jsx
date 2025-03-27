@@ -1,22 +1,19 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import "./detailBotton.css";
-import { fetchDetailBottonThunk } from "../../redux/productThunk";
-const DetaiBotton = () => {
-  const dispatch = useDispatch();
-  const product = useSelector((state) => state.product.productList);
-  function handleClickId(id) {
-    console.log(id);
 
-    dispatch(fetchDetailBottonThunk(id));
-  }
+import "./detailBotton.css";
+
+const DetaiBotton = ({ handleClickId, selectedId }) => {
+  const product = useSelector((state) => state.product.productList);
 
   return (
     <div className="product-container">
       {product.map((item) => (
         <div
           key={item.id}
+          className={
+            item.id === selectedId ? "product-item selected" : "product-item"
+          }
           onClick={() => {
             handleClickId(item.id);
           }}
