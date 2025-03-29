@@ -1,20 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Menu from "../../components/menu/menu";
 import { Container } from "react-bootstrap";
-import {
-  faTrashCan,
-  faAngleLeft,
-  faAngleRight,
-  faArrowLeft,
-  faArrowRight,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
 import "./cart.css";
 import { useSelector } from "react-redux";
+import { FaArrowUp, FaArrowDown } from "react-icons/fa";
+
 const Cart = () => {
   const cart = useSelector((state) => state.product.cart);
-  console.log(cart);
+
+  if (!cart) {
+    return <p>Loading...</p>;
+  }
+
+  const [quantity, setQuantity] = useState(1);
+  const [price, setPrice] = useState(cart.price || 0);
+
+  useEffect(() => {
+    if (cart) {
+      setPrice(cart.price);
+    }
+  }, [cart]);
+
+  function handleClickApart() {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+      setPrice((prevPrice) => prevPrice - cart.price);
+    }
+  }
+
+  function handleClickAdd() {
+    setQuantity(quantity + 1);
+    setPrice((prevPrice) => prevPrice + cart.price);
+  }
 
   return (
     <div>
@@ -38,13 +55,24 @@ const Cart = () => {
         <tbody>
           <tr>
             <td>
-              {" "}
               <img src={cart.img1} alt="anh" />
             </td>
             <td>{cart.category}</td>
-            <td>{cart.price}</td>
-            <td>0</td>
-            <td>xóa</td>
+            <td>${price}</td>
+            <td>
+              <div className="quantity-wrapper">
+                <button onClick={handleClickApart}>
+                  <FaArrowDown />
+                </button>
+                <span>{quantity}</span>
+                <button onClick={handleClickAdd}>
+                  <FaArrowUp />
+                </button>
+              </div>
+            </td>
+            <td>
+              <button className="remove-btn">Xóa</button>
+            </td>
           </tr>
         </tbody>
       </table>

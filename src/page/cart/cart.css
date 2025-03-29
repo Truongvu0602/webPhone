@@ -168,3 +168,30 @@
   color: darkred;
   transform: scale(1.1);
 }
+.cart_table button {
+  background-color: transparent; /* Không có nền */
+  border: 1px solid #ddd; /* Viền nhẹ */
+  padding: 5px 8px; /* Kích thước nút */
+  cursor: pointer;
+  border-radius: 5px; /* Bo tròn góc */
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
+  margin: 0 5px; /* Khoảng cách giữa các nút */
+}
+
+.cart_table button:hover {
+  background-color: #007bff; /* Màu nền khi hover */
+  color: white;
+}
+
+.cart_table td {
+  text-align: center; /* Căn giữa nội dung trong ô */
+  vertical-align: middle; /* Căn giữa theo chiều dọc */
+}
+
+.quantity-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}

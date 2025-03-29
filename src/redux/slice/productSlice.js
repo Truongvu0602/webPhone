@@ -12,7 +12,6 @@ const initialState = {
   productList: [],
   detailList: [],
   homeList: [],
-  quantily: 0,
   cart: [],
 };
 
