@@ -6,7 +6,7 @@ import {
   fetchDataThunk,
   fetchCategoryDataThunk,
   fetchDetailThunk,
-} from "../../redux/productThunk";
+} from "../../redux/product/productThunk";
 import Menu from "../../components/menu/menu";
 import Footer from "../../components/footer/footer";
 import { useNavigate } from "react-router-dom";

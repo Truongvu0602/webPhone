@@ -2,46 +2,27 @@ import React, { useState, useEffect } from "react";
 import Menu from "../../components/menu/menu";
 import { Container } from "react-bootstrap";
 import "./cart.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
+import Banner from "./banner/banner";
+import { getCart } from "../../redux/cart/cartThunk";
 
 const Cart = () => {
-  const cart = useSelector((state) => state.product.cart);
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const cartAll = useSelector((state) => state.cart.cartAll);
+  console.log(1);
 
-  if (!cart) {
-    return <p>Loading...</p>;
-  }
-
-  const [quantity, setQuantity] = useState(1);
-  const [price, setPrice] = useState(cart.price || 0);
+  console.log(cartAll);
 
   useEffect(() => {
-    if (cart) {
-      setPrice(cart.price);
-    }
-  }, [cart]);
-
-  function handleClickApart() {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-      setPrice((prevPrice) => prevPrice - cart.price);
-    }
-  }
-
-  function handleClickAdd() {
-    setQuantity(quantity + 1);
-    setPrice((prevPrice) => prevPrice + cart.price);
-  }
-
+    dispatch(getCart());
+  }, [dispatch]);
   return (
     <div>
       <Menu />
-      <Container fluid>
-        <div className="pageHeader_wrapper">
-          <h1>Cart</h1>
-          <p>cart</p>
-        </div>
-      </Container>
+      <Banner />
+
       <table className="cart_table">
         <thead>
           <tr className="cart_tableHeaders">
@@ -52,29 +33,34 @@ const Cart = () => {
             <th>Remove</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>
-              <img src={cart.img1} alt="anh" />
-            </td>
-            <td>{cart.category}</td>
-            <td>${price}</td>
-            <td>
-              <div className="quantity-wrapper">
-                <button onClick={handleClickApart}>
-                  <FaArrowDown />
-                </button>
-                <span>{quantity}</span>
-                <button onClick={handleClickAdd}>
-                  <FaArrowUp />
-                </button>
-              </div>
-            </td>
-            <td>
-              <button className="remove-btn">Xóa</button>
-            </td>
-          </tr>
-        </tbody>
+
+        {cartItems.map((item) => {
+          return (
+            <tbody>
+              <tr>
+                <td>
+                  <img src="" alt="anh" />
+                </td>
+                <td>{item.productId}</td>
+                <td>${}</td>
+                <td>
+                  <div className="quantity-wrapper">
+                    <button>
+                      <FaArrowDown />
+                    </button>
+                    <span>{item.quantity}</span>
+                    <button>
+                      <FaArrowUp />
+                    </button>
+                  </div>
+                </td>
+                <td>
+                  <button className="remove-btn">Xóa</button>
+                </td>
+              </tr>
+            </tbody>
+          );
+        })}
       </table>
     </div>
   );

@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  fetchCartThunk,
   fetchDataThunk,
   fetchDetailBottonThunk,
   fetchHomeDataThunk,
@@ -12,7 +11,6 @@ const initialState = {
   productList: [],
   detailList: [],
   homeList: [],
-  cart: [],
 };
 
 export const productSlice = createSlice({
@@ -39,10 +37,6 @@ export const productSlice = createSlice({
       .addCase(fetchHomeDataThunk.fulfilled, (state, actions) => {
         // console.log(actions.payload);
         state.homeList = actions.payload;
-      })
-      .addCase(fetchCartThunk.fulfilled, (state, actions) => {
-        // console.log(actions.payload);
-        state.cart = actions.payload;
       });
   },
 });

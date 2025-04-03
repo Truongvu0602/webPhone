@@ -3,7 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "./productCategory.css";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchHomeDataThunk } from "../../../redux/productThunk";
+import { fetchHomeDataThunk } from "../../../redux/product/productThunk";
 export default function ProductCategory() {
   const navigate = useNavigate();
   const dispatch = useDispatch();

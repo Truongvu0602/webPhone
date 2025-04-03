@@ -4,8 +4,9 @@ import Footer from "../../components/footer/footer";
 import Menu from "../../components/menu/menu";
 import { Container } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { registerThunk } from "../../redux/productThunk";
+
 import { useNavigate } from "react-router-dom";
+import { registerThunk } from "../../redux/auth/authThunk";
 
 const Register = () => {
   const [name, setName] = useState("");

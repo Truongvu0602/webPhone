@@ -1,30 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { fetchDetailBottonThunk } from "../../redux/product/productThunk";
+import { addToCart } from "../../redux/cart/cartThunk"; // Import action thêm vào giỏ hàng
 import "./detail.css";
 import DetaiBotton from "./detailBotton/detaiBotton";
 import Menu from "../../components/menu/menu";
-import { useNavigate } from "react-router-dom";
-
-import {
-  fetchCartThunk,
-  fetchDetailBottonThunk,
-} from "../../redux/productThunk";
 
 const Detail = () => {
   const detaiList = useSelector((state) => state.product.detailList);
-  const [idCart, setIdCart] = useState(null);
+  const cart = useSelector((state) => state.cart.cartItems);
+
   const [selectedId, setSelectedId] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  function handleClickId(id) {
-    setIdCart(id);
-    setSelectedId(id);
-    dispatch(fetchDetailBottonThunk(id));
-  }
 
-  const hanleClick = () => {
-    dispatch(fetchCartThunk({ id: idCart }));
-    navigate("/cart");
+  useEffect(() => {
+    if (selectedId) {
+      dispatch(fetchDetailBottonThunk(selectedId));
+    }
+  }, [selectedId, dispatch]);
+
+  const handleClickId = (id) => {
+    setSelectedId(id);
+  };
+
+  const handleAddToCart = () => {
+    const token = localStorage.getItem("token");
+
+    // Kiểm tra nếu không có token (chưa đăng nhập)
+    if (!token) {
+      console.log("Token không có. Vui lòng đăng nhập.");
+      alert("Vui lòng đăng nhập trước khi thêm vào giỏ hàng.");
+      navigate("/login"); // Điều hướng đến trang login nếu chưa có token
+      return;
+    }
+
+    const quantity = 1;
+    const productData = {
+      productId: detaiList.id,
+      quantity,
+    };
+
+    // Dispatch action thêm vào giỏ hàng (thunk sẽ xử lý gọi API)
+
+    dispatch(addToCart(productData));
+    navigate("/cart"); // Điều hướng tới giỏ hàng sau khi thêm sản phẩm
   };
 
   return (
@@ -32,10 +53,10 @@ const Detail = () => {
       <Menu />
       <div className="detail-container">
         <div className="img-container">
-          <img src={detaiList.img1} alt="" />
-          <img src={detaiList.img2} alt="" />
-          <img src={detaiList.img3} alt="" />
-          <img src={detaiList.img4} alt="" />
+          <img src={detaiList.img1} alt={detaiList.name} />
+          <img src={detaiList.img2} alt={detaiList.name} />
+          <img src={detaiList.img3} alt={detaiList.name} />
+          <img src={detaiList.img4} alt={detaiList.name} />
         </div>
         <div className="text-container">
           <p>Tên sản phẩm : {detaiList.name}</p>
@@ -45,7 +66,7 @@ const Detail = () => {
           <p>Danh mục : {detaiList.category}</p>
 
           <div className="detail-button-container">
-            <button onClick={hanleClick}>Cart</button>
+            <button onClick={handleAddToCart}>Add Cart</button>
           </div>
         </div>
       </div>

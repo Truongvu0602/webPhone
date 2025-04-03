@@ -5,7 +5,7 @@ import Menu from "../../components/menu/menu";
 import { Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { loginThunk } from "../../redux/productThunk";
+import { loginThunk } from "../../redux/auth/authThunk";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -29,6 +29,7 @@ const Login = () => {
       localStorage.setItem("token", result.payload.token); // Lưu token vào localStorage
       navigate("/"); // Chuyển hướng về trang chính
       window.location.reload(); // Cập nhật UI ngay lập tức
+      console.log("Token in localStorage:", localStorage.getItem("token"));
     } else {
       alert("Đăng nhập thất bại! Vui lòng kiểm tra lại.");
     }
