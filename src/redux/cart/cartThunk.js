@@ -5,15 +5,14 @@ export const addToCart = createAsyncThunk(
   "cart/addToCart",
   async ({ productId, quantity }, thunkAPI) => {
     try {
-      // Lấy token từ localStorage
       const token = localStorage.getItem("token");
-      // Kiểm tra nếu không có token thì reject
+
       if (!token) {
         return thunkAPI.rejectWithValue("Không có token, vui lòng đăng nhập");
       }
-      // Thực hiện request API để thêm sản phẩm vào giỏ hàng
+
       const res = await instance.post(
-        "http://localhost:3000/cart",
+        "http://localhost:3000/cart/cart",
         { productId, quantity },
         {
           headers: {
@@ -21,15 +20,13 @@ export const addToCart = createAsyncThunk(
           },
         }
       );
-      // Log dữ liệu trả về từ API sau khi có kết quả
+
       console.log("Dữ liệu trả về từ API:", res.data);
 
       return res.data;
     } catch (error) {
-      // Log lỗi nếu có
       console.error("Lỗi khi thêm vào giỏ hàng:", error);
 
-      // Return lỗi thông qua rejectWithValue
       return thunkAPI.rejectWithValue(error.message || "Có lỗi xảy ra");
     }
   }
@@ -37,24 +34,72 @@ export const addToCart = createAsyncThunk(
 
 export const getCart = createAsyncThunk("cart/getCart", async (_, thunkAPI) => {
   try {
-    // Lấy token từ localStorage
     const token = localStorage.getItem("token");
 
-    // Kiểm tra nếu không có token thì reject
     if (!token) {
       return thunkAPI.rejectWithValue("Không có token, vui lòng đăng nhập");
     }
 
-    // Gửi token trong headers khi gọi API
-    const res = await instance.get("/cart", {
+    const res = await instance.get("/cart/cart", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
 
-    console.log("Data received:", res.data);
+    console.log("Data receivedcart get:", res.data);
     return res.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
+export const deleteCart = createAsyncThunk(
+  "cart/deleteCart",
+  async (id, thunkAPI) => {
+    try {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        return thunkAPI.rejectWithValue("Không có token, vui lòng đăng nhập");
+      }
+      const res = await instance.delete(`/cart/cart/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = res.data;
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.error("Lỗi khi xóa sản phẩm:", error);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateCartQuantity = createAsyncThunk(
+  "cart/updateCartQuantity",
+  async ({ id, type }, thunkAPI) => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        return thunkAPI.rejectWithValue("Không có token, vui lòng đăng nhập");
+      }
+
+      const res = await instance.put(
+        `/cart/cart/${id}/quantity`,
+        { type },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(res.data);
+
+      return res.data;
+    } catch (err) {
+      console.error("Lỗi khi cập nhật số lượng:", err);
+      return thunkAPI.rejectWithValue(err.response?.data || err.message);
+    }
+  }
+);

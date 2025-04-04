@@ -7,7 +7,7 @@ export const fetchDataThunk = createAsyncThunk(
   //
   async (params, thunkAPI) => {
     try {
-      const res = await instance.get("/");
+      const res = await instance.get("/product");
       const data = res.data;
       console.log(data);
 
@@ -22,7 +22,7 @@ export const fetchCategoryDataThunk = createAsyncThunk(
   "product/fetchCategoryDataThunk",
   async (category, thunkAPI) => {
     try {
-      const res = await instance.get(`/${category}`);
+      const res = await instance.get(`/product/${category}`);
       const data = res.data;
       console.log(data);
       return data;
@@ -37,7 +37,7 @@ export const fetchDetailThunk = createAsyncThunk(
   //
   async (params, thunkAPI) => {
     try {
-      const res = await instance.get(`/detail/${params}`);
+      const res = await instance.get(`/product/detail/${params}`);
       const data = res.data;
       // console.log(data);
       return data;
@@ -51,7 +51,7 @@ export const fetchDetailBottonThunk = createAsyncThunk(
   //
   async (params, thunkAPI) => {
     try {
-      const res = await instance.get(`/detail/${params}`);
+      const res = await instance.get(`/product/detail/${params}`);
       const data = res.data;
       console.log(data);
       return data;
@@ -69,7 +69,7 @@ export const fetchHomeDataThunk = createAsyncThunk(
   //
   async (params, thunkAPI) => {
     try {
-      const res = await instance.get("/");
+      const res = await instance.get("/product");
       const data = res.data;
       console.log(data);
 

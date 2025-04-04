@@ -1,8 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addToCart, getCart } from "../cartThunk";
+import {
+  addToCart,
+  deleteCart,
+  getCart,
+  updateCartQuantity,
+} from "../cartThunk";
 
 const initialState = {
-  cartItems: [],
   cartAll: [],
 };
 
@@ -11,15 +15,28 @@ const cartSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(addToCart.fulfilled, (state, action) => {
-      console.log(action.payload);
-      state.cartItems.push(action.payload);
-    });
-    builder.addCase(getCart.fulfilled, (state, action) => {
-      console.log(action.payload);
-
-      state.cartAll = action.payload;
-    });
+    builder
+      .addCase(getCart.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.cartAll = action.payload;
+      })
+      .addCase(addToCart.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.cartAll.push(action.payload);
+      })
+      .addCase(deleteCart.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.cartAll = action.payload;
+      })
+      .addCase(updateCartQuantity.fulfilled, (state, action) => {
+        const updatedItem = action.payload;
+        const index = state.cartAll.findIndex(
+          (item) => item.id === updatedItem.id
+        );
+        if (index !== -1) {
+          state.cartAll[index] = updatedItem;
+        }
+      });
   },
 });
 
