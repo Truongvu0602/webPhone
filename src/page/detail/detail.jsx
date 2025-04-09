@@ -6,10 +6,10 @@ import { addToCart } from "../../redux/cart/cartThunk"; // Import action thêm v
 import "./detail.css";
 import DetaiBotton from "./detailBotton/detaiBotton";
 import Menu from "../../components/menu/menu";
+import { checkAuth } from "../../utils/checkAuth";
 
 const Detail = () => {
   const detaiList = useSelector((state) => state.product.detailList);
-  const cart = useSelector((state) => state.cart.cartItems);
 
   const [selectedId, setSelectedId] = useState(null);
   const navigate = useNavigate();
@@ -25,29 +25,39 @@ const Detail = () => {
     setSelectedId(id);
   };
 
+  // const handleAddToCart = () => {
+  //   const token = localStorage.getItem("token");
+
+  //   // Kiểm tra nếu không có token (chưa đăng nhập)
+  //   if (!token) {
+  //     console.log("Token không có. Vui lòng đăng nhập.");
+  //     alert("Vui lòng đăng nhập trước khi thêm vào giỏ hàng.");
+  //     navigate("/login"); // Điều hướng đến trang login nếu chưa có token
+  //     return;
+  //   }
+
+  //   const quantity = 1;
+  //   const productData = {
+  //     productId: detaiList.id,
+  //     quantity,
+  //   };
+
+  //   // Dispatch action thêm vào giỏ hàng (thunk sẽ xử lý gọi API)
+
+  //   dispatch(addToCart(productData));
+  //   navigate("/cart"); // Điều hướng tới giỏ hàng sau khi thêm sản phẩm
+  // };
   const handleAddToCart = () => {
-    const token = localStorage.getItem("token");
+    if (!checkAuth(navigate)) return;
 
-    // Kiểm tra nếu không có token (chưa đăng nhập)
-    if (!token) {
-      console.log("Token không có. Vui lòng đăng nhập.");
-      alert("Vui lòng đăng nhập trước khi thêm vào giỏ hàng.");
-      navigate("/login"); // Điều hướng đến trang login nếu chưa có token
-      return;
-    }
-
-    const quantity = 1;
     const productData = {
       productId: detaiList.id,
-      quantity,
+      quantity: 1,
     };
 
-    // Dispatch action thêm vào giỏ hàng (thunk sẽ xử lý gọi API)
-
     dispatch(addToCart(productData));
-    navigate("/cart"); // Điều hướng tới giỏ hàng sau khi thêm sản phẩm
+    navigate("/cart");
   };
-
   return (
     <div>
       <Menu />

@@ -12,12 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  //   function handleClick(e) {
-  //     e.preventDefault();
-  //     console.log("Dữ liệu gửi đi:", { email, pass: password });
-  //     dispatch(loginThunk({ email, pass: password }));
-  //     navigate("/");
-  //   }
+
   async function handleClick(e) {
     e.preventDefault();
 
@@ -28,7 +23,6 @@ const Login = () => {
     if (result.payload?.token) {
       localStorage.setItem("token", result.payload.token); // Lưu token vào localStorage
       navigate("/"); // Chuyển hướng về trang chính
-      window.location.reload(); // Cập nhật UI ngay lập tức
       console.log("Token in localStorage:", localStorage.getItem("token"));
     } else {
       alert("Đăng nhập thất bại! Vui lòng kiểm tra lại.");
