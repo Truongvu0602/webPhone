@@ -57,6 +57,16 @@ const Menu = () => {
           </div>
           <ul className="nav_list">
             <li className="nav_item nav_cartIcon">
+              <span
+                className="nav_link"
+                onClick={() => navigate("/orderProduct")}
+              >
+                <FontAwesomeIcon className="link_icon" icon={faCartShopping} />
+                <span className="nav_cartQuant"></span>
+                OrderProduct
+              </span>
+            </li>
+            <li className="nav_item nav_cartIcon">
               <span className="nav_link" onClick={() => navigate("/cart")}>
                 <FontAwesomeIcon className="link_icon" icon={faCartShopping} />
                 <span className="nav_cartQuant"></span>

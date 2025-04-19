@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Menu from "../../components/menu/menu";
 import { useDispatch, useSelector } from "react-redux";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import Banner from "./banner/banner";
 import {
   deleteCart,
@@ -9,6 +10,7 @@ import {
   updateCartQuantity,
 } from "../../redux/cart/cartThunk";
 import "./cart.css";
+import { getCartOder } from "../../redux/oder/oderThunk";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -29,7 +31,9 @@ const Cart = () => {
       dispatch(getCart());
     });
   }
-
+  function handleClickOder() {
+    dispatch(getCartOder());
+  }
   return (
     <div>
       <Menu />
@@ -93,6 +97,11 @@ const Cart = () => {
           )}
         </tbody>
       </table>
+      <Link to="/checkout">
+        <button className="btn" onClick={handleClickOder}>
+          Thanh toán
+        </button>
+      </Link>
     </div>
   );
 };

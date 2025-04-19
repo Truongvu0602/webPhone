@@ -7,6 +7,8 @@ import { Routes, Route } from "react-router-dom";
 import Cart from "./page/cart/cart";
 import Register from "./page/register/register";
 import Login from "./page/login/login";
+import Checkout from "./page/checkout/checkout";
+import OrderedProduct from "./page/orderedProduct/orderedProduct";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/orderProduct" element={<OrderedProduct />} />
       </Routes>
     </>
   );
