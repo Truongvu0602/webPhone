@@ -9,6 +9,7 @@ import Register from "./page/register/register";
 import Login from "./page/login/login";
 import Checkout from "./page/checkout/checkout";
 import OrderedProduct from "./page/orderedProduct/orderedProduct";
+import Profile from "./page/profile/profile";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/orderProduct" element={<OrderedProduct />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </>
   );

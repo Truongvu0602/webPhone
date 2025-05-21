@@ -93,6 +93,13 @@ const Menu = () => {
                 </span>
               </li>
             )}
+            <li className="nav_item nav_cartIcon">
+              <span className="nav_link" onClick={() => navigate("/profile")}>
+                <FontAwesomeIcon className="link_icon" icon={faUser} />
+                <span className="nav_cartQuant"></span>
+                Profile
+              </span>
+            </li>
           </ul>
         </nav>
       </Container>
