@@ -10,14 +10,16 @@ const Profile = () => {
   const profileData = useSelector((state) => state.profile.getProfileList);
 
   const [formData, setFormData] = useState({
-    userName: "", // 🟢 dùng đúng key backend yêu cầu
+    userName: "",
     email: "",
   });
+
+  const [avatarFile, setAvatarFile] = useState(null); // ảnh đại diện
 
   useEffect(() => {
     if (profileData) {
       setFormData({
-        userName: profileData.userName || "", // 🟢 sync đúng key
+        userName: profileData.userName || "",
         email: profileData.email || "",
       });
     }
@@ -34,10 +36,22 @@ const Profile = () => {
     });
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setAvatarFile(file); // lưu ảnh vào state
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(updateProfile(formData)) // 🟢 formData giờ có đúng `userName`
+    const data = new FormData();
+    data.append("userName", formData.userName);
+    data.append("email", formData.email);
+    if (avatarFile) {
+      data.append("image", avatarFile); // tên này phải trùng với key backend nhận
+    }
+
+    dispatch(updateProfile(data))
       .unwrap()
       .then(() => {
         alert("Cập nhật thông tin thành công!");
@@ -48,6 +62,11 @@ const Profile = () => {
       });
   };
 
+  // Tạo URL ảnh avatar hoặc dùng ảnh mặc định
+  const avatarUrl = profileData?.avatar
+    ? `http://localhost:3000/uploads/${profileData.avatar}`
+    : "../../../public/img/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg";
+
   return (
     <div>
       <Menu />
@@ -56,8 +75,8 @@ const Profile = () => {
         <form className="profile-form" onSubmit={handleSubmit}>
           <div className="avatar-section">
             <img
-              src="../../../public/img/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg"
-              alt="ảnh"
+              src={avatarUrl}
+              alt="ảnh đại diện"
               style={{
                 width: "100px",
                 height: "100px",
@@ -65,13 +84,13 @@ const Profile = () => {
                 objectFit: "cover",
               }}
             />
-            <input type="file" accept="image/*" />
+            <input type="file" accept="image/*" onChange={handleFileChange} />
           </div>
 
           <label>Họ tên:</label>
           <input
             type="text"
-            name="userName" // 🟢 key phải là "userName"
+            name="userName"
             value={formData.userName}
             onChange={handleChange}
           />
